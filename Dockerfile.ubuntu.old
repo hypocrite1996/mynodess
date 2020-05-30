@@ -1,0 +1,27 @@
+#獲得ubuntu鏡像
+FROM ubuntu:14.04
+
+#安裝node.js
+RUN apt-get install --yes curl
+RUN curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
+RUN apt-get install --yes nodejs
+RUN apt-get install --yes build-essential
+
+#設定環境bang數，METHOD為加密形式，KEY為密碼
+ENV METHOD=aes-256-cfb
+ENV KEY=密碼
+
+#複製所有資料到docker myNodeProject目錄下
+COPY . /myNodeProject
+
+#設定 docker下的myNodeProject為工作目錄
+WORKDIR /myNodeProject
+
+#安裝npm依賴庫
+RUN npm install
+
+#開放80端口
+EXPOSE  80
+
+#跑
+CMD npm start
