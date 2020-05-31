@@ -1,5 +1,5 @@
 #使用mhart做的node映像，據說這是最小的node鏡像
-FROM mhart/alpine-node:12
+FROM mhart/alpine-node:4.9.1
 
 ENV KEY=087546545
 ENV METHOD=aes-256-cfb
